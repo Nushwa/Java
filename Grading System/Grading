@@ -1,0 +1,132 @@
+import java.util.Scanner;
+
+public class Grading {
+    private int q1,q2,q3;
+    private int mid;
+    private int finalExam;
+    private double totaln = total();
+
+    //Setter and Getter
+
+    public void setQ1(int q1){
+        this.q1 = q1;
+    }
+
+    public void setQ2(int q2) {
+        this.q2 = q2;
+    }
+
+    public void setQ3(int q3) {
+        this.q3 = q3;
+    }
+
+    public void setMid(int mid) {
+        this.mid = mid;
+    }
+
+    public void setFinalExam(int finalExam) {
+        this.finalExam = finalExam;
+    }
+
+    public int getQ1() {
+        Scanner in = new Scanner(System.in);
+
+        while (q1 < 0 || q1 > 10){
+
+            System.out.println("Please Enter valid marks: ");
+            q1 = in.nextInt();
+        }
+        return q1;
+    }
+
+    public int getQ2() {
+        Scanner in = new Scanner(System.in);
+
+        while (q2 < 0 || q2 > 10){
+
+            System.out.println("Please Enter valid marks: ");
+            q2 = in.nextInt();
+        }
+        return q2;
+    }
+
+    public int getQ3() {
+        Scanner in = new Scanner(System.in);
+
+        while (q3 < 0 || q3 > 10){
+
+            System.out.println("Please Enter valid marks: ");
+            q3 = in.nextInt();
+        }
+        return q3;
+    }
+
+
+
+    public int getMid() {
+        Scanner in = new Scanner(System.in);
+
+        while (mid < 0 || mid > 100){
+
+            System.out.println("Please Enter valid marks: ");
+            mid = in.nextInt();
+        }
+        return mid;
+    }
+
+    public int getFinalExam() {
+        Scanner in = new Scanner(System.in);
+
+        while (finalExam < 0 || finalExam > 100){
+
+            System.out.println("Please Enter valid marks: ");
+            finalExam = in.nextInt();
+        }
+        return finalExam;
+    }
+
+    //Computing the Quiz marks
+    public double computeQuiz(){
+        return (double)25 * (q1 + q2 + q3)/30 ;
+    }
+
+    public double computeMid(){
+
+        return mid * 0.35;
+    }
+
+    public double computeFinal(){
+        return finalExam * 0.4;
+    }
+
+    //Add all the marks above to calculate the grade
+    public double total(){
+        return computeQuiz() + computeMid() + computeFinal();
+    }
+
+    //Find the Grade from the total marks
+    public String Grade( double totaln){
+
+        if(totaln >= 90){
+            return "A";
+        }
+        else if(totaln <90 && totaln >= 80){
+            return "B";
+        }
+        else if(totaln < 80 && totaln >= 70){
+            return "C";
+        }
+        else if(totaln < 70 && totaln >= 60){
+            return "D";
+        }
+        else {
+            return "F";
+        }
+    }
+
+    public void display(){
+        System.out.printf("Quiz 1: %d \nQuiz 2: %d\nQuiz 3: %d\nTotal Quiz Score: %.2f\nMid Term: %d\nFinal Exam: %d" +
+        "\nTotal Score: %.2f\nGrade: %s",q1, q2, q3,computeQuiz(), mid,finalExam, total(), Grade(total()));
+    }
+
+}
